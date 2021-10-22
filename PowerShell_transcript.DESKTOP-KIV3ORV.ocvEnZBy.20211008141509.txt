@@ -38,8 +38,9 @@ mysql> use project;
 Database changed
 mysql> CREATE TABLE WAITLIST
     -> (
-    -> Name varchar(20) not null,
     -> Phone_Number int(10) not null,
+    -> First_Name varchar(20) not null,
+    -> Last_Name varchar(20),
     -> Party_Size int(3) not null,
     -> Arrival_Time time(6) not null,
     -> constraint pk primary key(Phone_Number));
