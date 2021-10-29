@@ -12,7 +12,8 @@ $password = "root";
 $dbname = "project";
 
 
-$name = $_POST["name"];
+$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
 $phone= $_POST["phonenumber"];
 $psize= $_POST["partysize"];
 $atime= $_POST["arrivaltime"];
@@ -31,7 +32,7 @@ if (!$conn) {
 }
 
 
-$sql = "INSERT INTO WAITLIST (Name, Phone_number, Party_Size, Arrival_Time) VALUES ('$name', '$phone', '$psize', '$atime')";
+$sql = "INSERT INTO WAITLIST (Phone_Number, First_Name, Last_Name, Party_Size, Arrival_Time) VALUES ('$phone', '$firstname','$lastname', '$psize', '$atime')";
 
 
 
