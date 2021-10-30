@@ -1,16 +1,46 @@
 ﻿<!DOCTYPE html>
 
 <html>
+<head>
+<style type="text/css">
+form{
+	
+	position:relative; 
+	left:30px;
+}
+html{
+	
+	background-color:#FFFFCC;
 
-<body>
+}
+h2{
+	
+	position:relative; 
+	left:30px;
+	top: 10px;
+}
+div{
+	background-color:#CCFFFF;
+	border-color:1px solid black;
+}
+iframe{
+	
+	position:absolute;
+	}
+.auto-style1 {
+	margin-left: 289px;
+}
+</style>
+</head>
+<body style="width: 1061px">
 
 
-
+<div class="auto-style1">
 <h2>Waitlist</h2>
 
 
 
-<form action="insert.php" method="post">
+<form action="insert.php" method="post" style="width: 158px;">
 
     First Name<br><input name="firstname" type="text"><br><br>
     Last Name<br><input name="lastname" type="text"><br><br>
@@ -25,7 +55,7 @@
 
 
 
-<form action="remove.php" method="post">
+<form action="remove.php" method="post" style="width: 155px;">
 	<br>Phone Number:<br><input name="phonenumber" type="text"><br><br>
 	<input name="Button1" type="submit" value="REMOVE"></form>
 
@@ -33,6 +63,16 @@
 
 
 
+
+<iframe id="I1" name="I1" src="table.php" style="width: 486px; left: 500px; top: 60px; height: 330px;">Your browser does not support inline frames or is currently configured not to display inline frames.
+			</iframe>
+
+
+
+
+
+</div>
 </body>
+
 
 </html>
