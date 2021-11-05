@@ -36,15 +36,32 @@ Query OK, 1 row affected (0.00 sec)
 
 mysql> use project;
 Database changed
-mysql> CREATE TABLE WAITLIST
+mysql> CREATE TABLE CUSTOMER_INFO
     -> (
     -> Phone_Number int(10) not null,
     -> First_Name varchar(20) not null,
     -> Last_Name varchar(20),
-    -> Party_Size int(3) not null,
     -> Arrival_Time time(6) not null,
     -> constraint pk primary key(Phone_Number));
 Query OK, 0 rows affected (0.09 sec)
+
+mysql> CREATE TABLE WAITLIST
+    -> (
+    -> ID mediumint unsigned auto_increment,
+    -> Phone_Number int(10) not null,
+    -> Party_Size int(3) not null,
+    -> Arrival_Time time(6) not null,
+    /* The status is indicated by an integer
+    0 is the default which means "The customer has NOT been seated", displays in GUI as "Not Seated"
+    1 means "The customer has been waiting for more than 30 minutes", highlights row after 30 minutes have passed
+    2 means "A text has been sent to the customer", displays as "Text Sent" in GUI
+    3 means "The customer has been seated" or "Seated", displays as "Seated" in GUI
+    */
+    -> Status int(1) DEFAULT 0,
+    -> constraint pk primary key(ID),
+    -> constraint waitlist_FK1 foreign key(Phone_Number) references CUSTOMER_INFO(Phone_Number),
+    -> constraint CHK_Status CHECK (Status BETWEEN 0 AND 3);
+Query OK, 0 rows affected (0.03 sec)
 
 mysql> exit;
 Bye
