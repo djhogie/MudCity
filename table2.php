@@ -36,14 +36,14 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT Phone_Number, First_Name, Last_Name, Arrival_Time FROM CUSTOMER_INFO";
+$sql = "SELECT ID, Phone_Number, Party_Size, Arrival_Time, Status FROM WAITLIST";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  echo "<table><tr><th>Phone Number</th><th>First Name</th><th>Last Name</th><th>Arrival Time</th></tr>";
+  echo "<table><tr><th>ID</th><th>Phone Number</th><th>Party Size</th><th>Arrival Time</th><th>Status</th></tr>";
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row["Phone_Number"]."</td><td>".$row["First_Name"]."</td><td>".$row["Last_Name"]."</td><td>".$row["Arrival_Time"]."</td></tr>";  
+    echo "<tr><td>".$row["ID"]."</td><td>".$row["Phone_Number"]."</td><td>".$row["Party_Size"]."</td><td>".$row["Arrival_Time"]."</td><td>".$row["Status"]."</td></tr>";  
     }
   echo "</table>";
 } else {

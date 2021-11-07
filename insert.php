@@ -32,8 +32,9 @@ if (!$conn) {
 }
 
 
-$sql = "INSERT INTO WAITLIST (Phone_Number, First_Name, Last_Name, Party_Size, Arrival_Time) VALUES ('$phone', '$firstname','$lastname', '$psize', '$atime')";
+$sql = "INSERT INTO CUSTOMER_INFO (Phone_Number, First_Name, Last_Name, Arrival_Time) VALUES ('$phone', '$firstname','$lastname', '$atime')";
 
+// INSERT INTO WAITLIST (Phone_Number, Party_Size, Arrival_Time) VALUES ('$phone', '$psize, '$atime'); ;
 
 
 //$result = $conn->query($sql);
