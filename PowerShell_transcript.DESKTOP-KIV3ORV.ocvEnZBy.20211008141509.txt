@@ -42,7 +42,7 @@ mysql> CREATE TABLE CUSTOMER_INFO
     -> Phone_Number bigint(10),
     -> First_Name varchar(20) not null,
     -> Last_Name varchar(20),
-    -> constraint pk primary key(Customer_ID);
+    -> constraint pk primary key(Customer_ID));
 Query OK, 0 rows affected (0.09 sec)
 
 mysql> CREATE TABLE WAITLIST
