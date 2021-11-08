@@ -48,7 +48,7 @@ Query OK, 0 rows affected (0.09 sec)
 mysql> CREATE TABLE WAITLIST
     -> (
     -> Waitlist_ID mediumint unsigned auto_increment,
-    -> Phone_Number bigint(10) not null,
+    -> Customer_ID mediumint not null,
     -> Party_Size int(3) not null,
     -> Arrival_Time time(6) not null,
     /* The status is indicated by an integer
@@ -59,7 +59,7 @@ mysql> CREATE TABLE WAITLIST
     */
     -> Status int(1) DEFAULT 0,
     -> constraint pk primary key(ID),
-    -> constraint waitlist_FK1 foreign key(Phone_Number) references CUSTOMER_INFO(Phone_Number),
+    -> constraint waitlist_FK1 foreign key(Customer_ID) references CUSTOMER_INFO(Customer_ID),
     -> constraint CHK_Status CHECK (Status BETWEEN 0 AND 3));
 Query OK, 0 rows affected (0.03 sec)
 
