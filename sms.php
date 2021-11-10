@@ -6,7 +6,7 @@ if ( isset( $_REQUEST ) && !empty( $_REQUEST ) ) {
   !empty( $_REQUEST['phoneNumber'] ) &&
   !empty( $_REQUEST['carrier'] )
  ) {
-  $message = wordwrap( $_REQUEST['smsMessage'], 70 );
+  $message = "Thank you for coming to Mud City Crab House. Your table is ready!";
   $to = $_REQUEST['phoneNumber'] . '@' . $_REQUEST['carrier'];
   $result = @mail( $to, '', $message );
   print 'Message was sent to ' . $to;
