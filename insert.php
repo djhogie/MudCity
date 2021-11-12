@@ -9,7 +9,7 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "root";
-$dbname = "project2";
+$dbname = "project";
 
 
 $firstname = $_POST["firstname"];
@@ -52,8 +52,12 @@ else {
 
 }
 
-$sql = "INSERT INTO WAITLIST (Phone_Number, Party_Size, Arrival_Time) VALUES ('$phone', '$psize', '$atime')";
-if ($conn->query($sql) === TRUE) {
+//$custID = "SELECT MAX(Customer_ID) FROM CUSTOMER_INFO";
+
+//$sql2 = "INSERT INTO WAITLIST (Customer_ID, Party_Size, Arrival_Time) VALUES ('$psize', '$atime')";
+
+$sql2 = "INSERT INTO WAITLIST (Customer_ID, Party_Size, Arrival_Time) SELECT MAX(Customer_ID), '$psize', '$atime' FROM CUSTOMER_INFO";
+if ($conn->query($sql2) === TRUE) {
 
     echo "Sign up successfully!";
 
@@ -63,7 +67,7 @@ if ($conn->query($sql) === TRUE) {
 
 else {
 
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql2 . "<br>" . $conn->error;
 
 }
 
