@@ -58,11 +58,7 @@ mysql> CREATE TABLE WAITLIST
     3 means "The customer has been seated", displays as "Seated" in GUI
     */
     -> Status int(1) DEFAULT 0,
-<<<<<<< HEAD
-    -> constraint pk primary key(Waitlist_ID),
-=======
     -> constraint pk1 primary key(Waitlist_ID),
->>>>>>> 8ddfb1bee5e52724fdbaaa76b031c2f00a901f63
     -> constraint waitlist_FK1 foreign key(Customer_ID) references CUSTOMER_INFO(Customer_ID),
     -> constraint CHK_Status CHECK (Status BETWEEN 0 AND 3));
 Query OK, 0 rows affected (0.03 sec)
