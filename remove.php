@@ -9,11 +9,11 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "root";
-$dbname = "project2";
+$dbname = "project";
 
 
 
-$phone= $_POST["phonenumber"];
+$wid= $_POST["waitlistid"];
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,15 +29,16 @@ if (!$conn) {
 }
 
 
-$sql = "DELETE FROM WAITLIST WHERE (Phone_Number = '$phone')";
+//$sql = "DELETE FROM WAITLIST WHERE (Phone_Number = '$phone')";
 
+$sql = "UPDATE WAITLIST SET Status = 3 WHERE (Waitlist_ID = '$wid')";
 
 
 //$result = $conn->query($sql);
 
 if ($conn->query($sql) === TRUE) {
 
-    echo "Sign up successfully!";
+    echo "Status updated to seated successfully!";
 
     header("location: index.html");
 
