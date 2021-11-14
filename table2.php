@@ -17,6 +17,16 @@ td{
 	
 	background-color:yellow;
 }
+
+tr.strikeout td.strike-able:before {
+    content: " ";  
+    position: absolute;  
+    display: inline-block;  
+    padding: 4px 2px;  
+    left: 5;  
+    border-bottom: 2px solid #d9534f;  
+    width: 83%;          
+}
 </style>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Untitled 1</title>
@@ -36,14 +46,19 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT Waitlist_ID, Customer_ID, Party_Size, Arrival_Time, Status FROM WAITLIST";
-$result = $conn->query($sql);
+$sql0 = "SELECT Waitlist_ID, First_Name, Last_Name, Party_Size, Arrival_Time, Status FROM WAITLIST INNER JOIN CUSTOMER_INFO ON WAITLIST.Customer_ID=CUSTOMER_INFO.Customer_ID WHERE Status = 0";
+$result0 = $conn->query($sql0);
+$sql3 = "SELECT Waitlist_ID, First_Name, Last_Name, Party_Size, Arrival_Time, Status FROM WAITLIST INNER JOIN CUSTOMER_INFO ON WAITLIST.Customer_ID=CUSTOMER_INFO.Customer_ID WHERE Status = 3";
+$result3 = $conn->query($sql3);
 
-if ($result->num_rows > 0) {
-  echo "<table><tr><th>Waitlist ID</th><th>Customer ID</th><th>Party Size</th><th>Arrival Time</th><th>Status</th></tr>";
+if ($result3->num_rows > 0 || $result0->num_rows > 0) {
+  echo "<table><tr><th>#</th><th>First Name</th><th>Last Name</th><th>Party Size</th><th>Arrival Time</th><th>Status</th></tr>";
   // output data of each row
-  while($row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row["Waitlist_ID"]."</td><td>".$row["Customer_ID"]."</td><td>".$row["Party_Size"]."</td><td>".$row["Arrival_Time"]."</td><td>".$row["Status"]."</td></tr>";  
+  while($row3 = $result3->fetch_assoc()) {
+  	echo "<tr class='strikeout'><td class='strike-able'>".$row3["Waitlist_ID"]."</td><td>".$row3["First_Name"]."</td><td>".$row3["Last_Name"]."</td><td>".$row3["Party_Size"]."</td><td>".$row3["Arrival_Time"]."</td><td>".$row3["Status"]."</td></tr>";  
+    }
+  while($row0 = $result0->fetch_assoc()) {
+    echo "<tr><td>".$row0["Waitlist_ID"]."</td><td>".$row0["First_Name"]."</td><td>".$row0["Last_Name"]."</td><td>".$row0["Party_Size"]."</td><td>".$row0["Arrival_Time"]."</td><td>".$row0["Status"]."</td></tr>";  
     }
   echo "</table>";
 } else {
