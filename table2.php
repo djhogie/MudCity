@@ -25,7 +25,7 @@ tr.strikeout td.strike-able:before {
     padding: 4px 2px;  
     left: 5;  
     border-bottom: 2px solid #d9534f;  
-    width: 83%;          
+    width: 77%;          
 }
 </style>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
