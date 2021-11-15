@@ -50,7 +50,7 @@ mysql> CREATE TABLE WAITLIST
     -> Waitlist_ID mediumint unsigned auto_increment,
     -> Customer_ID mediumint unsigned,
     -> Party_Size int(3) not null,
-    -> Arrival_Time time(6) not null,
+    -> Arrival_Time time(0) not null,
     /* The status is indicated by an integer
     0 is the default which means "The customer has NOT been seated", displays in GUI as "Not Seated"
     1 means "The customer has been waiting for more than 30 minutes", highlights row after 30 minutes have passed
