@@ -58,7 +58,7 @@ if ($result3->num_rows > 0 || $result0->num_rows > 0) {
   	echo "<tr class='strikeout'><td class='strike-able'>".$row3["Waitlist_ID"]."</td><td>".$row3["First_Name"]."</td><td>".$row3["Last_Name"]."</td><td>".$row3["Party_Size"]."</td><td>".$row3["Arrival_Time"]."</td><td>".$row3["Phone_Number"]."</td><td>".$row3["Status"]."</td></tr>";  
     }
   while($row0 = $result0->fetch_assoc()) {
-    echo "<tr><td>".$row0["Waitlist_ID"]."</td><td>".$row0["First_Name"]."</td><td>".$row0["Last_Name"]."</td><td>".$row0["Party_Size"]."</td><td>".$row0["Arrival_Time"]."</td><td>".$row3["Phone_Number"]."</td><td>".$row0["Status"]."</td></tr>";  
+    echo "<tr><td>".$row0["Waitlist_ID"]."</td><td>".$row0["First_Name"]."</td><td>".$row0["Last_Name"]."</td><td>".$row0["Party_Size"]."</td><td>".$row0["Arrival_Time"]."</td><td>".$row3["Phone_Number"]."</td><td><form action='remove.php' method='post' style='width: 158px;'><select name='status'><option value='not seated'>Not Seated</option><option value='seated'>Seated</option></select></form></td></tr>";  
     }
   echo "</table>";
 } else {
