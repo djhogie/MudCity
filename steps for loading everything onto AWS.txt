@@ -1,0 +1,37 @@
+#AWS Steps
+#Log into AWS and search for "Cloudformation"
+#Click "Create Stack" (with new resources)
+#"Upload a template file" >> "Choose file" Select the "awsworkingcode" file I sent you >> "Next" (at the bottom)
+#Under "Stack name" call it whatever you want, i.e. "MC-WebStack" >> "Next"
+#Press "Next" again at the bottom of this screen
+#Go to the bottom of this screen and check the box for "I acknowledge that AWS Cloudformation might create IAM resources"
+#"Create Stack"
+#All of the resources will start to deploy, networking resources, firewalls, routers, Server, Public IP etc...
+#To delete everything when you are done, go back to Cloudformation and select the stack then "Delete" ez pz
+#Get familiar with deleting it, and re-creating it. You should only be running this stuff when you are using it, or when you need the website to be running. The biggest costs will be running the server/Public IP
+
+
+#Connecting to your Web Server
+#search for EC2 >> instances >> check the box for instances >> "Connect" (located on the top right) then connect via SSM, you will then be logged into the server on a web browser terminal
+#commands, copy paste each command below once you connect to your web server
+sudo yum update httpd
+ #prep apache for install
+sudo yum install httpd
+ #install apache
+sudo systemctl start httpd
+ #start your apache server
+sudo systemctl status httpd
+ #checks the status of your web service (apache)
+hostname -I
+ #tells the hostname of the server you're on
+curl -4 icanhazip.com
+ #gives your public IP
+cd /var/www/html
+ #changes your directory into the web server directory
+sudo touch homepage
+ #creates a file called "homepage" in the directory you are currently in
+sudo vim homepage
+ #allows you to modify the homepage file, here is where you would write your html code
+ #once you have "vim'd" into this file, you will be able to write to it by pressing "i" on your keyboard
+ #once you have written the html code in this file, press the "escape" key on your keyboard, then "colon" key on your keyboard, then "q!" to quit out of it
+ #create any files you want, then visit that web page by opening a web browser, i.e. chrome and type in the ip of your web server, /homepage. i.e. https://44.155.25.21/homepage
