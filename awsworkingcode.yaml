@@ -31,7 +31,6 @@ Resources:
                 Ebs: 
                     Encrypted: false
                     VolumeSize: 8
-                    SnapshotId: "snap-02dc060ccaf62803f"
                     VolumeType: "gp2"
                     DeleteOnTermination: true
             IamInstanceProfile: !Ref EC2Profile
