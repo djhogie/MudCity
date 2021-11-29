@@ -6,7 +6,7 @@ Resources:
     EC2Instance:
         Type: "AWS::EC2::Instance"
         Properties:
-            ImageId: "ami-0dd0ccab7e2801812"
+            ImageId: "ami-04902260ca3d33422"
             # KeyName: "MC-Key"
             InstanceType: "t2.micro"
             AvailabilityZone: !GetAtt EC2Subnet.AvailabilityZone
@@ -18,7 +18,7 @@ Resources:
             #     mkdir /tmp/ssm
             #     cd /tmp/ssm
             #     wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
-            #     sudo dpkg -i amazon-ssm-agent.deb  
+            #     sudo dpkg -i amazon-ssm-agent.deb
             #     sudo start amazon-ssm-agent
             #     sudo systemctl enable amazon-ssm-agent
             EbsOptimized: false
@@ -31,6 +31,7 @@ Resources:
                 Ebs: 
                     Encrypted: false
                     VolumeSize: 8
+                    SnapshotId: "snap-02dc060ccaf62803f"
                     VolumeType: "gp2"
                     DeleteOnTermination: true
             IamInstanceProfile: !Ref EC2Profile
