@@ -1,0 +1,164 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Metadata:
+    Generator: "former2"
+Description: ""
+Resources:
+    EC2Instance:
+        Type: "AWS::EC2::Instance"
+        Properties:
+            ImageId: "ami-0dd0ccab7e2801812"
+            # KeyName: "MC-Key"
+            InstanceType: "t2.micro"
+            AvailabilityZone: !GetAtt EC2Subnet.AvailabilityZone
+            Tenancy: "default"
+            SubnetId: !Ref EC2Subnet
+            # UserData:
+            #   Fn::Base64: >-
+            #     #!/bin/bash
+            #     mkdir /tmp/ssm
+            #     cd /tmp/ssm
+            #     wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
+            #     sudo dpkg -i amazon-ssm-agent.deb  
+            #     sudo start amazon-ssm-agent
+            #     sudo systemctl enable amazon-ssm-agent
+            EbsOptimized: false
+            SecurityGroupIds: 
+              - !Ref EC2SecurityGroup
+            SourceDestCheck: true
+            BlockDeviceMappings: 
+              - 
+                DeviceName: "/dev/xvda"
+                Ebs: 
+                    Encrypted: false
+                    VolumeSize: 8
+                    VolumeType: "gp2"
+                    DeleteOnTermination: true
+            IamInstanceProfile: !Ref EC2Profile
+            HibernationOptions: 
+                Configured: false
+            EnclaveOptions: 
+                Enabled: false
+    EC2Profile:
+        Type: AWS::IAM::InstanceProfile
+        Properties:
+          Roles:
+            - Ref: "EC2Role"
+    EC2Role:
+        Type: AWS::IAM::Role
+        Properties:
+          AssumeRolePolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Principal:
+                  Service:
+                    - ec2.amazonaws.com
+                Action:
+                  - 'sts:AssumeRole'
+          Path: /
+          Policies:
+            - PolicyName: root
+              PolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                  - Effect: Allow
+                    Action: '*'
+                    Resource: '*'
+    EC2SecurityGroup:
+        Type: "AWS::EC2::SecurityGroup"
+        Properties:
+            GroupDescription: "launch-wizard-1 created 2021-11-25T15:35:36.510-05:00"
+            GroupName: "launch-wizard-1"
+            Tags: 
+              - 
+                Key: "Name"
+                Value: "MC_SecGrp"
+            VpcId: !Ref EC2VPC
+            SecurityGroupIngress: 
+              # - 
+              #   CidrIp: "0.0.0.0/0"
+              #   FromPort: 22
+              #   IpProtocol: "tcp"
+              #   ToPort: 22
+              - 
+                CidrIp: "0.0.0.0/0"
+                FromPort: 3306
+                IpProtocol: "tcp"
+                ToPort: 3306
+              - 
+                CidrIp: "0.0.0.0/0"
+                FromPort: 80
+                IpProtocol: "tcp"
+                ToPort: 80
+              - 
+                CidrIp: "0.0.0.0/0"
+                FromPort: 443
+                IpProtocol: "tcp"
+                ToPort: 443
+            SecurityGroupEgress: 
+              - 
+                CidrIp: "0.0.0.0/0"
+                IpProtocol: "-1"
+
+    EC2VPC:
+        Type: "AWS::EC2::VPC"
+        Properties:
+            CidrBlock: "10.0.0.0/16"
+            EnableDnsSupport: true
+            EnableDnsHostnames: true
+            InstanceTenancy: "default"
+            Tags: 
+              - 
+                Key: "Name"
+                Value: "MC_VPC_Network"
+
+    EC2Subnet:
+        Type: "AWS::EC2::Subnet"
+        Properties:
+            AvailabilityZone: !Sub "${AWS::Region}a"
+            CidrBlock: "10.0.0.0/24"
+            VpcId: !Ref EC2VPC
+            MapPublicIpOnLaunch: false
+            Tags: 
+              - 
+                Key: "Name"
+                Value: "MC_Pub_Subnet"
+
+    EC2InternetGateway:
+        Type: "AWS::EC2::InternetGateway"
+        Properties:
+            Tags: 
+              - 
+                Key: "Name"
+                Value: "MC_IGW"
+    AttachGateway:
+        Type: AWS::EC2::VPCGatewayAttachment
+        Properties:
+            VpcId: !Ref EC2VPC
+            InternetGatewayId: !Ref EC2InternetGateway
+    MyEIP:
+      Type: AWS::EC2::EIP
+      Properties:
+        InstanceId: !Ref EC2Instance
+    EC2Route:
+        Type: "AWS::EC2::Route"
+        Properties:
+            DestinationCidrBlock: "0.0.0.0/0"
+            GatewayId: !Ref EC2InternetGateway
+            RouteTableId: !Ref EC2RouteTable
+
+    EC2RouteTable:
+        Type: "AWS::EC2::RouteTable"
+        Properties:
+            VpcId: !Ref EC2VPC
+            Tags: 
+              - 
+                Key: "Name"
+                Value: "MC_Pub_RouteTable"
+    EC2RouteTableAssociation:
+        Type: AWS::EC2::SubnetRouteTableAssociation
+        Properties:
+          RouteTableId:
+            Ref: EC2RouteTable
+          SubnetId:
+            Ref: EC2Subnet

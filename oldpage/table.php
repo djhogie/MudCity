@@ -17,9 +17,6 @@ td{
 	
 	background-color:yellow;
 }
-table{
-	background-color:beige;
-}
 </style>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <title>Untitled 1</title>

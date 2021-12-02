@@ -17,16 +17,13 @@ td{
 	
 	background-color:yellow;
 }
-table{
-	background-color:beige;
-}
 
 tr.strikeout td.strike-able:before {
     content: " ";  
     position: absolute;  
     display: inline-block;  
     padding: 4px 2px;  
-    left: 5px;  
+    left: 5;  
     border-bottom: 2px solid #d9534f;  
     width: 77%;          
 }
