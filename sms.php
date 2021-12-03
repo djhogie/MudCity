@@ -5,16 +5,6 @@ require 'C:\Program Files (x86)\Ampps\php-7.1\composer\vendor\autoload.php';
 $mail = new PHPMailer(TRUE);
 //PHP Mailer stuff, have to download composer from web
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "root";
-$dbname = "project";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 $pNum = $_POST["phoneNumber"];
 
