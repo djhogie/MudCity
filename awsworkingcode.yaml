@@ -6,7 +6,7 @@ Resources:
     EC2Instance:
         Type: "AWS::EC2::Instance"
         Properties:
-            ImageId: "ami-0dd0ccab7e2801812"
+            ImageId: "ami-02e06909ecd1a50cc"
             # KeyName: "MC-Key"
             InstanceType: "t2.micro"
             AvailabilityZone: !GetAtt EC2Subnet.AvailabilityZone
