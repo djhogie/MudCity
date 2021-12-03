@@ -30,8 +30,6 @@ $message = "Thank you for coming to Mud City Crab House. Your table will be read
       $mail->AddAddress( $pNum . "@txt.att.net" ); // recipients email
       $mail->AddAddress( $pNum . "@tmomail.net" ); // recipients email
       $mail->AddAddress( $pNum . "@vmobl.com" ); // recipients email
-      $mail->AddAddress( $pNum . "@mmst5.tracfone.com" ); // recipients email
-      $mail->AddAddress( $pNum . "@email.uscc.net" ); // recipients email
       $mail->AddAddress( $pNum . "@mymetropcs.com" ); // recipients email
       
     $mail->FromName = "Mud City Crab House"; // readable name
