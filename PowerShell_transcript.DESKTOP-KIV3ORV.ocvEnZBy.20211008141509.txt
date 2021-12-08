@@ -1,4 +1,4 @@
-﻿**********************
+**********************
 Windows PowerShell transcript start
 Start time: 20211008141509
 Username: DESKTOP-KIV3ORV\student
@@ -37,6 +37,7 @@ Query OK, 1 row affected (0.00 sec)
 mysql> use project;
 Database changed
 mysql> CREATE TABLE CUSTOMER_INFO
+<<<<<<< Updated upstream
     -> (
     -> Customer_ID mediumint unsigned auto_increment,
     -> Phone_Number bigint(10),
@@ -44,6 +45,15 @@ mysql> CREATE TABLE CUSTOMER_INFO
     -> Last_Name varchar(20),
     -> constraint pk primary key(Customer_ID),
     -> constraint UC_Customer UNIQUE(Phone_Number,First_Name));
+=======
+     (
+     Customer_ID mediumint unsigned auto_increment,
+     Phone_Number bigint(10),
+     First_Name varchar(20) not null,
+     Last_Name varchar(20),
+     constraint pk primary key(Customer_ID));
+     constraint UC_Customer UNIQUE(Phone_Number,First_Name));
+>>>>>>> Stashed changes
 Query OK, 0 rows affected (0.09 sec)
 
 mysql> CREATE TABLE WAITLIST
