@@ -57,6 +57,10 @@ h1{
 <body style="background:url('wood.jpg');background-repeat:no-repeat; background-size:cover">
 
 <div class="divset">
+<select name="Select1" style="position:absolute; left: 405px; top:10px;" onchange="document.getElementById('iframe1').src = this.options[this.selectedIndex].value">
+			<option value="table2.php">Table 2</option>
+			<option value="table.php">Table 1</option>
+			</select>
 <h1>Mud City <br>
 	Crab House <br> 
 	Waitlist</h1>
@@ -73,8 +77,14 @@ h1{
     </div>
     </form>
     
+    
+    <form action="sms.php" method="post" style="position:relative;width: 158px; left: 90px; top: 325px;border:0px;">
+
+	<br><b>Phone Number:</b><br><input name="phoneNumber" type="text"><br>
+	<br><input name="Button1" type="submit" value="SEND"></form>
+    
 	
-	<iframe name="Iframe1" class="iframeset" src="table2.php">
+	<iframe name="Iframe1" class="iframeset" src="table2.php" id="iframe1">
 				Your browser does not support inline frames or is currently configured not to display inline frames.
 			</iframe>
 			

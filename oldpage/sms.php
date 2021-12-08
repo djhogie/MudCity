@@ -5,6 +5,16 @@ require 'C:\Program Files (x86)\Ampps\php-7.1\composer\vendor\autoload.php';
 $mail = new PHPMailer(TRUE);
 //PHP Mailer stuff, have to download composer from web
 
+$servername = "127.0.0.1";
+$username = "root";
+$password = "root";
+$dbname = "project";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
 
 $pNum = $_POST["phoneNumber"];
 
@@ -20,6 +30,8 @@ $message = "Thank you for coming to Mud City Crab House. Your table will be read
       $mail->AddAddress( $pNum . "@txt.att.net" ); // recipients email
       $mail->AddAddress( $pNum . "@tmomail.net" ); // recipients email
       $mail->AddAddress( $pNum . "@vmobl.com" ); // recipients email
+      $mail->AddAddress( $pNum . "@mmst5.tracfone.com" ); // recipients email
+      $mail->AddAddress( $pNum . "@email.uscc.net" ); // recipients email
       $mail->AddAddress( $pNum . "@mymetropcs.com" ); // recipients email
       
     $mail->FromName = "Mud City Crab House"; // readable name
